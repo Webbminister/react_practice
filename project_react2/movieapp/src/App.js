@@ -1,4 +1,5 @@
 
+import { BrowserRouter } from "react-router-dom";
 import SearchBar from "./Filter";
 import Modal from "./Modal";
 import MovieList from "./MovieList";
@@ -20,14 +21,29 @@ function App() {
     setAllMovies(newMovieArr)
 }
 
+return(
+  <div className="App">
 
-  return (
-    <div className="App">
       <SearchBar handleFilter={handleFilter} />
       <Modal handleAddMovie={handleAddMovie} />
       <MovieList allMovies={allMovies} />
-    </div>
+    </div> 
+)
+
+  return (
+  <BrowserRouter >
+  <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+  </BrowserRouter>
+   
   );
+
 }
 
 export default App;
